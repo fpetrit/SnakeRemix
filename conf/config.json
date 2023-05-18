@@ -1,8 +1,13 @@
 {
+    "App":
+    {
+
+    },
+
     "Window":
     {
         "default_size": [1080, 720],
-        "default_fps": 40
+        "default_fps": 60
     },
     
     "Snake":
