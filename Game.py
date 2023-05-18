@@ -23,12 +23,17 @@ class Game:
             if event.type == pygame.QUIT:
                 self.running = False
 
-            
-            elif event.type == pygame.KEYUP:
-                s.direction_vect = [0, -1]
 
             elif event.type == pygame.KEYDOWN:
-                s.direction_vect = [0, 1]
+
+                if event.unicode == 'z':
+                    s.direction_vect = [0, -1]
+                elif event.unicode == 's':
+                    s.direction_vect = [0, 1]
+                elif event.unicode == 'd':
+                    s.direction_vect = [1, 0]
+                elif event.unicode == 'q':
+                    s.direction_vect = [-1, 0]
 
 
 
