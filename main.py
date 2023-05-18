@@ -1,5 +1,5 @@
-from Game import Game
+from App import App
 
-game = Game()
+game = App((500, 500), 30)
 
 game.launch()
