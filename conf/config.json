@@ -15,6 +15,14 @@
         "initial_length": 40,
         "initial_speed": 5,
         "width": 10 
+    },
+
+    "Keybinds":
+    {
+        "z": ["cd", "UP"],
+        "s": ["cd", "DOWN"],
+        "q": ["cd", "LEFT"],
+        "d": ["cd", "RIGHT"]
     }
 
 

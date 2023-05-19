@@ -23,29 +23,15 @@ class Game:
             if event.type == pygame.QUIT:
                 self.running = False
 
-
-            elif event.type == pygame.KEYDOWN:
-
-                if event.unicode == 'z':
-                    s.direction_vect = [0, -1]
-                elif event.unicode == 's':
-                    s.direction_vect = [0, 1]
-                elif event.unicode == 'd':
-                    s.direction_vect = [1, 0]
-                elif event.unicode == 'q':
-                    s.direction_vect = [-1, 0]
+            if event.type == pygame.KEYDOWN:
+                pass
+                
 
 
 
     def game_actions(self):
         
-        s = self.snake
-
-        self.screen.fill("black", s.rect)
-
-        s.rect.move_ip(s.speed*s.direction_vect[0], s.speed*s.direction_vect[1])
-
-        self.screen.blit(s.img, s.rect)
+        self.snake.move(self.screen)
         
 
 
