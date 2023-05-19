@@ -12,15 +12,18 @@ cf = json.loads(conf_file.read())
 
 # ADDING THE ROOT DIRECTORY PATH TO THE LOADED CONFIGURATION
 
-root_dir = Path(__file__).parents[1].resolve()
+root_dir = Path(__file__).parents[2].resolve()
+assets_dir = root_dir / "app" / "assets"
 
 cf["App"]["root_dir"] = root_dir
+cf["App"]["assets_dir"] = assets_dir
 
 
 # CONSTANTS
 
 KEYBINDS = cf["Keybinds"]
 SNAKE_CF = cf["Snake"]
+BG_CF = cf["Background"]
 
 # Snake's directions
 LEFT, RIGHT, UP, DOWN = [-1, 0], [1, 0], [0, -1], [0, 1]

@@ -1,5 +1,9 @@
 import pygame
-from Snake import Snake
+from .Snake import Snake
+from .conf.Conf import SNAKE_CF, cf, LEFT, RIGHT, UP, DOWN
+
+
+from .background.Background import Background
 
 class Game:
 
@@ -10,7 +14,9 @@ class Game:
         self.clock = pygame.time.Clock()
         self.fps = fps
 
-        self.snake = Snake()
+        self.snake = Snake(**SNAKE_CF)
+
+        self.bg = Background(self.screen, **cf["Background"])
 
 
 
@@ -24,14 +30,22 @@ class Game:
                 self.running = False
 
             if event.type == pygame.KEYDOWN:
-                pass
+                match event.unicode:
+                    case 'z': self.snake.change_direction(UP)
+                    case 's': self.snake.change_direction(DOWN)
+                    case 'q': self.snake.change_direction(LEFT)
+                    case 'd': self.snake.change_direction(RIGHT)
                 
 
 
 
     def game_actions(self):
         
+        self.screen.blit(self.bg.grid_surface, (0, 0))
+
         self.snake.move(self.screen)
+
+        
         
 
 

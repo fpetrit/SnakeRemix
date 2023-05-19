@@ -1,5 +1,5 @@
-from Game import Game
-from conf.Conf import cf
+from .Game import Game
+from .conf.Conf import cf
 
 def_win_size = tuple(cf["Window"]["default_size"])
 def_fps = cf["Window"]["default_fps"]

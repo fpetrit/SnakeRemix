@@ -6,15 +6,20 @@
 
     "Window":
     {
-        "default_size": [1080, 720],
+        "default_size": [720, 720],
         "default_fps": 60
     },
     
     "Snake":
     {
         "initial_length": 40,
-        "initial_speed": 5,
+        "speed": 5,
         "width": 10 
+    },
+
+    "Background":
+    {
+        "column_nb": 10
     },
 
     "Keybinds":

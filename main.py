@@ -1,5 +1,5 @@
-from App import App
+from app.App import App
 
-game = App((1080, 720), 60)
+game = App((720, 720), 60)
 
 game.launch()
