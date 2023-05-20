@@ -1,5 +1,7 @@
 from ..conf.Conf import cf
 import pygame
+from .elements.Obstacle import Obstacle
+from .Element_ABC import Element_ABC
 
 class Grid:
 
@@ -14,9 +16,17 @@ class Grid:
 
         self.element_grid = [[0]*self.column_nb for _ in range(self.column_nb)]
 
+        # TEST #
+        self.element_grid[3][5] = Obstacle(self.square_side)
+        self.element_grid[3][5].draw(self.get_square_rect((5, 3)), self.screen)
+        # # # # #
+
         self.rect_list = self.get_rect_list()
 
-        self.grid_surface = self.get_grid_surface()
+        self.grid_surface = self.get_background_surface()
+
+        self.grid_element_surface = self.get_element_surface()
+
 
 
     def coord_to_index(self, coord: tuple[int]):
@@ -45,10 +55,23 @@ class Grid:
                 l.append(self.get_square_rect((x, y)))
 
         return l
+    
+
+
+    def get_elements_rect(self) -> dict[tuple, pygame.Rect]:
+
+        d = dict()
+
+        for y in range(self.column_nb):
+            for x in range(self.column_nb):
+                if self.element_grid[y][x] != 0:
+                    d[(x, y)] = self.get_square_rect((x, y))
+
+        return d
 
 
 
-    def get_grid_surface(self):
+    def get_background_surface(self):
 
         surface = self.screen.copy()
 
@@ -57,16 +80,20 @@ class Grid:
 
         for square in self.rect_list:
 
-            surface.blit(sprite, square)
+                surface.blit(sprite, square)
 
         return surface
-
-                
-
-                
+    
 
 
+    def get_element_surface(self) -> pygame.Surface:
 
-                
+        surface = self.grid_surface.copy()
 
+        for y in range(self.column_nb):
+            for x in range(self.column_nb):
+                if self.element_grid[y][x] != 0:
+                    self.element_grid[y][x].draw(self.get_square_rect((x, y)), surface)
         
+        return surface
+    

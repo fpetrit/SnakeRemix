@@ -43,7 +43,7 @@ class Game:
     def game_actions(self):
         
         # Draw the background
-        self.screen.blit(self.grid.grid_surface, (0, 0))
+        self.screen.blit(self.grid.grid_element_surface, (0, 0))
         
         # Move the snake
         self.snake.move(self.screen)
@@ -52,8 +52,12 @@ class Game:
         if not self.snake.is_in_rect(self.map):
             print("Out of the map")
 
-        # Check if the snake collided, throw the appropriate event
-
+        # Check if the snake collided, call the appropriate collision callback
+        elts = self.grid.get_elements_rect()
+        indice = self.snake.check_collisions(elts)
+        if indice != None:
+            (x, y) = indice[0]
+            self.grid.element_grid[y][x].collision_callback(self.snake)
 
 
         

@@ -34,8 +34,14 @@ class Snake:
         screen.blit(s.img, s.rect)
 
 
-    def check_collisions(self, rects: list[pygame.Rect]) -> int:
-        return self.rect.collidelist(rects)
+    def check_collisions(self, rects_dict: dict[tuple, pygame.Rect]) -> int:
+        return self.rect.collidedict(rects_dict, True)
+        
     
     def is_in_rect(self, rect: pygame.Rect) -> bool:
         return rect.contains(self.rect)
+    
+
+
+    def die(self):
+        print("Snake died")
