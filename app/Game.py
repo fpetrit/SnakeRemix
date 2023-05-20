@@ -1,22 +1,23 @@
 import pygame
 from .Snake import Snake
 from .conf.Conf import SNAKE_CF, cf, LEFT, RIGHT, UP, DOWN
+from .grid.Grid import Grid
 
 
-from .background.Background import Background
 
 class Game:
 
     def __init__(self, size, fps):
         pygame.init()
         self.running = False
-        self.screen = pygame.display.set_mode(size)
+        self.size = size
+        self.screen = pygame.display.set_mode(self.size)
         self.clock = pygame.time.Clock()
         self.fps = fps
 
         self.snake = Snake(**SNAKE_CF)
-
-        self.bg = Background(self.screen, **cf["Background"])
+        self.grid = Grid(self.screen, **cf["Background"])
+        self.map = pygame.Rect((0, 0), self.size)
 
 
 
@@ -41,9 +42,19 @@ class Game:
 
     def game_actions(self):
         
+        # Draw the background
         self.screen.blit(self.bg.grid_surface, (0, 0))
-
+        
+        # Move the snake
         self.snake.move(self.screen)
+
+        # Check if the snake is in the map, if not throw an event
+        if not self.snake.is_in_rect(self.map):
+            print("Out of the map")
+
+        # Check if the snake collided, throw the appropriate event
+
+
 
         
         
@@ -51,7 +62,6 @@ class Game:
 
 
     def refresh(self):
-
         pygame.display.flip()
         self.clock.tick(self.fps)
 

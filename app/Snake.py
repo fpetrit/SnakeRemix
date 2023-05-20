@@ -32,3 +32,10 @@ class Snake:
         s.rect.move_ip(s.speed*s.__direction_vect[0], s.speed*s.__direction_vect[1])
         
         screen.blit(s.img, s.rect)
+
+
+    def check_collisions(self, rects: list[pygame.Rect]) -> int:
+        return self.rect.collidelist(rects)
+    
+    def is_in_rect(self, rect: pygame.Rect) -> bool:
+        return rect.contains(self.rect)
