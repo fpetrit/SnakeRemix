@@ -43,7 +43,7 @@ class Game:
     def game_actions(self):
         
         # Draw the background
-        self.screen.blit(self.bg.grid_surface, (0, 0))
+        self.screen.blit(self.grid.grid_surface, (0, 0))
         
         # Move the snake
         self.snake.move(self.screen)
